@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>Responsive images test</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+  </head>
+  <body>
+    <style>
+      img.styled {
+        width: 550px;
+        height: auto;
+      }
+      @media (max-width: 1376px) {
+        img.styled {
+          width: calc(50vw - 12em);
+          height: auto;
+        }
+      }
+      @media (max-width: 768px) {
+        img.styled {
+          width: calc(100vw - 3em);
+          height: auto;
+        }
+      }
+    </style>
+    <h1>What is this?</h1>
+    <p>
+      This is a test of the behavior of the picture element. If you use an
+      img-tag inside the picture element, you want it to give width & height
+      attributes (which *is*
+      <a
+        href="https://www.smashingmagazine.com/2020/03/setting-height-width-images-important-again/"
+        >important</a
+      >). But if you also use the srcSet and sizes attributes it may lead to
+      unexpected/unwanted behavior.
+    </p>
+    <p>
+      What happens is that the width & height attributes cancel out the
+      sizes-attribute. You can prevent this from happening by using CSS, but
+      that makes the sizes attribute redundant, so you should remove it. It was
+      <a
+        href="https://www.stefanjudis.com/snippets/a-picture-element-to-load-correctly-resized-webp-images-in-html/"
+        >Stefan Judis's article</a
+      >
+      that set me on track for figuring this out.
+    </p>
+    <h2>img with css styling, sizes, height and width attributes</h2>
+    <picture>
+      <!-- load webp images if supported -->
+      <source
+        type="image/webp"
+        srcset="
+          ./images/original_s.webp 100w,
+          ./images/original_m.webp 200w,
+          ./images/original_l.webp 550w
+        "
+        sizes="(max-width: 768px) calc(100vw -
+      3em), (max-width: 1376px) calc(50vw - 12em), 550px"
+      />
+      <!-- load traditional supported image format -->
+      <img
+        srcset="
+          ./images/original_s.jpg 100w,
+          ./images/original_m.jpg 200w,
+          ./images/original_l.jpg 550w
+        "
+        sizes="(max-width: 768px) calc(100vw -
+      3em), (max-width: 1376px) calc(50vw - 12em), 550px"
+        src="./images/original.jpg"
+        alt="Screenclip of Stefan's Twitter"
+        loading="lazy"
+        decoding="async"
+        width="1243"
+        height="1500"
+        class="styled"
+      />
+    </picture>
+    <h2>
+      img without css styling, but with sizes, height and width attributes
+    </h2>
+    <picture>
+      <!-- load webp images if supported -->
+      <source
+        type="image/webp"
+        srcset="
+          ./images/original_s.webp 100w,
+          ./images/original_m.webp 200w,
+          ./images/original_l.webp 550w
+        "
+        sizes="(max-width: 768px) calc(100vw -
+      3em), (max-width: 1376px) calc(50vw - 12em), 550px"
+      />
+      <!-- load traditional supported image format -->
+      <img
+        srcset="
+          ./images/original_s.jpg 100w,
+          ./images/original_m.jpg 200w,
+          ./images/original_l.jpg 550w
+        "
+        sizes="(max-width: 768px) calc(100vw -
+      3em), (max-width: 1376px) calc(50vw - 12em), 550px"
+        src="./images/original.jpg"
+        alt="Screenclip of Stefan's Twitter"
+        loading="lazy"
+        decoding="async"
+        width="1243"
+        height="1500"
+      />
+    </picture>
+    <h2>
+      img without css styling, height and width attributes, but with sizes
+      attribute
+    </h2>
+    <picture>
+      <!-- load webp images if supported -->
+      <source
+        type="image/webp"
+        srcset="
+          ./images/original_s.webp 100w,
+          ./images/original_m.webp 200w,
+          ./images/original_l.webp 550w
+        "
+        sizes="(max-width: 768px) calc(100vw -
+      3em), (max-width: 1376px) calc(50vw - 12em), 550px"
+      />
+      <!-- load traditional supported image format -->
+      <img
+        srcset="
+          ./images/original_s.jpg 100w,
+          ./images/original_m.jpg 200w,
+          ./images/original_l.jpg 550w
+        "
+        sizes="(max-width: 768px) calc(100vw -
+      3em), (max-width: 1376px) calc(50vw - 12em), 550px"
+        src="./images/original.jpg"
+        alt="Screenclip of Stefan's Twitter"
+        loading="lazy"
+        decoding="async"
+      />
+    </picture>
+    <h2>img without css styling, height, width and sizes attributes</h2>
+    <picture>
+      <!-- load webp images if supported -->
+      <source
+        type="image/webp"
+        srcset="
+          ./images/original_s.webp 100w,
+          ./images/original_m.webp 200w,
+          ./images/original_l.webp 550w
+        "
+      />
+      <!-- load traditional supported image format -->
+      <img
+        srcset="
+          ./images/original_s.jpg 100w,
+          ./images/original_m.jpg 200w,
+          ./images/original_l.jpg 550w
+        "
+        src="./images/original.jpg"
+        alt="Screenclip of Stefan's Twitter"
+        loading="lazy"
+        decoding="async"
+      />
+    </picture>
+    <h2>
+      img without sizes attribute, but with css styling, height and width
+      attributes
+    </h2>
+    <picture>
+      <!-- load webp images if supported -->
+      <source
+        type="image/webp"
+        srcset="
+          ./images/original_s.webp 100w,
+          ./images/original_m.webp 200w,
+          ./images/original_l.webp 550w
+        "
+      />
+      <!-- load traditional supported image format -->
+      <img
+        srcset="
+          ./images/original_s.jpg 100w,
+          ./images/original_m.jpg 200w,
+          ./images/original_l.jpg 550w
+        "
+        src="./images/original.jpg"
+        alt="Screenclip of Stefan's Twitter"
+        loading="lazy"
+        decoding="async"
+        width="1243"
+        height="1500"
+        class="styled"
+      />
+    </picture>
+  </body>
+</html>
