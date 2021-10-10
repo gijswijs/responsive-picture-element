@@ -80,10 +80,20 @@
     <h2>
       img without css styling, but with sizes, height and width attributes
     </h2>
-      <!-- load traditional supported image format -->
     <picture>
+      <!-- load webp images if supported -->
+      <source
+        type="image/webp"
+        srcset="
+          ./images/original_s.webp 100w,
+          ./images/original_m.webp 200w,
+          ./images/original_l.webp 550w
+        "
+        sizes="(max-width: 768px) calc(100vw -
+      3em), (max-width: 1376px) calc(50vw - 12em), 550px"
+      />
+      <!-- load traditional supported image format -->
       <img
-        width="1243"
         srcset="
           ./images/original_s.jpg 100w,
           ./images/original_m.jpg 200w,
@@ -93,6 +103,8 @@
       3em), (max-width: 1376px) calc(50vw - 12em), 550px"
         src="./images/original.jpg"
         alt="Screenclip of Stefan's Twitter"
+        width="1243"
+        height="1500"
       />
     </picture>
     <h2>
